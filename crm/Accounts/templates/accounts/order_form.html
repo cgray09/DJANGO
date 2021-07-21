@@ -1,0 +1,30 @@
+{% extends "accounts/main.html" %}
+{% load static %}
+{% block content %}
+
+<div class="row">
+<div class="col-md-6">
+	<div class="card card-body">
+		
+		<form action="" method="post">
+			{% csrf_token %} <!-- django wont let us make a POST w/o the token -->
+			{{form.management_form}}
+			{% for field in form %} <!-- form is from "views updateOrder" -->
+				{{field}}	<!-- displays every field from the model of the form as an input
+							(like the order model we passed in, in forms.py) -->
+				<hr>
+
+			{% endfor %}
+			<input type="submit" name="Submit">
+
+		</form>
+
+
+	</div>
+
+</div>
+
+
+</div>
+
+{% endblock %}
