@@ -1,0 +1,56 @@
+{% extends 'Base/Header.html' %}
+{% load static %}
+{% block content %}
+
+<div class="row">
+
+{% if not books %}
+
+	<h3 align="center" style="color: #9e9e9e">No Books to display</h3>
+
+{% else %}
+
+{% for book in books %} <!-- passed from the view -->
+
+	<div class="col s6 m5 14">
+		<div class="card">
+			<div class="card-image">
+				<a href="{% url 'ReadBook:description' book.id %}" style="color: white;">
+				<img src="{{book.book_cover.url}}" style="height:290px; border: 1px solid #9e9e9e; padding: 5px"/>
+					
+				</a>
+			</div>
+			<div class="card-content" style="overflow:hidden; border-top: 1px solid
+			rgba(113, 112, 112, 0.3); padding: 0px" >
+
+			<div style="background: #26a69a; padding: 2px 13px;">
+			<a href="" style="color: white;">
+					<span class="card-title"> {{book.book_name|title}}</span>
+
+			</a>
+			</div>
+
+
+			</div>
+
+			<div style="margin-left: auto;">
+				<a href="" class="btn-waves-effect">
+
+					{{book.book_price|yesno:'$,Free'}} {% firstof book.book_price %}
+
+
+				</a>
+
+			</div>
+
+
+
+	</div>
+
+
+{% endfor %} {% endif %}
+
+
+</div>
+
+{% endblock %}
